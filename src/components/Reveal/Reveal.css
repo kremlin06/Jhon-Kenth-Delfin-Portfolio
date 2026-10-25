@@ -1,0 +1,10 @@
+.reveal {
+  transition:
+    opacity var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+}
+
+.reveal--pending {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+}

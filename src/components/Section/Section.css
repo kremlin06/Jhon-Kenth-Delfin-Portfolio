@@ -1,0 +1,29 @@
+/* A short closing block does not need a full section gap above it. */
+.section--tight {
+  margin-block-start: var(--space-8);
+}
+
+.section__head > * + * {
+  margin-block-start: var(--space-3);
+}
+
+.section__intro {
+  color: var(--color-text-secondary);
+}
+
+.section__body {
+  margin-block-start: var(--space-5);
+}
+
+@media (min-width: 48em) {
+  .section--split {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: var(--space-7);
+    align-items: start;
+  }
+
+  .section--split > .section__body {
+    margin-block-start: 0;
+  }
+}

@@ -1,0 +1,6 @@
+/* Each contact link is its own 44 px target, so the rows are spaced for touch. */
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}

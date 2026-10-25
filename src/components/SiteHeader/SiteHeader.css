@@ -1,0 +1,182 @@
+/* Header, desktop nav, and the mobile menu panel. Tokens only. Pattern from PhishGuard Web. */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-header);
+  height: var(--header-height);
+  background: var(--color-bg); /* solid fallback */
+  border-bottom: var(--border);
+}
+
+/*
+  The glass layer is a pseudo-element, not the header itself. A backdrop-filter on the header would
+  make it a backdrop root, and the open menu panel inside it could then no longer blur the page behind.
+  Reduced transparency is handled by the --glass-* tokens in base.css.
+*/
+@supports (backdrop-filter: blur(1px)) {
+  .site-header {
+    background: transparent;
+  }
+
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: 100%;
+}
+
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  color: var(--color-text);
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-heading);
+  text-decoration: none;
+}
+
+.site-header__brand:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- Menu button (below 48em) ---------- */
+
+.site-header__menu-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: var(--target-min);
+  min-height: var(--target-min);
+  padding-inline: var(--space-4);
+  background: transparent;
+  color: var(--color-text);
+  border: var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.site-header__menu-button:hover,
+.site-header__menu-button--open {
+  background: var(--color-surface-sunken);
+}
+
+/* ---------- Nav: the disclosure panel on small screens ---------- */
+
+.site-nav {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + var(--border-width)); /* just below the header hairline */
+  background: var(--color-bg); /* solid fallback */
+  border-bottom: var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .site-nav {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+  }
+}
+
+.site-nav--open {
+  display: block;
+  animation: site-nav-in var(--duration-base) var(--ease-standard);
+}
+
+@keyframes site-nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--space-2) * -1));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.site-nav__list {
+  margin: 0;
+  padding: var(--space-2) var(--gutter);
+  list-style: none;
+}
+
+.site-nav__item + .site-nav__item {
+  border-top: var(--border);
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  min-height: var(--target-min);
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+}
+
+.site-nav__link:hover {
+  color: var(--color-accent);
+}
+
+/* Current page: aria-current is set by NavLink; the underline means it is not color alone. */
+.site-nav__link--current {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* ---------- Tablet and up: inline nav, no Menu button ---------- */
+
+@media (min-width: 48em) {
+  .site-header__menu-button {
+    display: none;
+  }
+
+  .site-nav {
+    display: block;
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: 0;
+    box-shadow: none;
+    animation: none;
+  }
+
+  .site-nav__list {
+    display: flex;
+    gap: var(--space-5);
+    padding: 0;
+  }
+
+  .site-nav__item + .site-nav__item {
+    border-top: 0;
+  }
+
+  /* Home is in the mobile menu only; on desktop the wordmark links Home. */
+  .site-nav__item--mobile-only {
+    display: none;
+  }
+
+  .site-nav__link {
+    display: inline-flex;
+    font-size: var(--text-small);
+  }
+}

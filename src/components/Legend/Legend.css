@@ -1,0 +1,29 @@
+.legend {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.legend__row {
+  display: grid;
+  gap: var(--space-1);
+  align-items: start;
+}
+
+.legend__row dt {
+  justify-self: start;
+}
+
+.legend__row dd {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-small);
+  line-height: var(--leading-snug);
+}
+
+@media (min-width: 30em) {
+  .legend__row {
+    grid-template-columns: 10rem 1fr;
+    column-gap: var(--space-4);
+    align-items: center;
+  }
+}

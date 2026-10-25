@@ -1,0 +1,109 @@
+/*
+  Design tokens. The values below the "Portfolio additions" marker are new; everything above it is the
+  PhishGuard Web token set (that project's src/styles/tokens.css and docs/DESIGN_SYSTEM.md section 2),
+  copied unchanged so both sites share one visual language and the same computed contrast ratios.
+  If a color changes, recompute its contrast first.
+  Only custom properties live here. Raw hex values, px sizes and ad-hoc spacing belong in this file only.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* ---------- Color: neutrals (warm) ---------- */
+  --color-bg:              #F7F6F3;  /* page background */
+  --color-surface:         #FFFFFF;  /* raised objects: project cards, callouts */
+  --color-surface-sunken:  #EFEDE8;  /* code chips, quiet fills */
+  --color-text:            #15171B;  /* primary text */
+  --color-text-secondary:  #555A62;  /* supporting text */
+  --color-text-tertiary:   #666B73;  /* captions, metadata */
+  --color-border:          #E2DFD8;  /* hairlines, decorative dividers */
+  --color-border-strong:   #8A8E96;  /* borders of interactive controls (>= 3:1) */
+
+  /* ---------- Color: accent ---------- */
+  --color-accent:          #1D4C9C;
+  --color-accent-hover:    #163C7D;
+  --color-accent-active:   #112F63;
+  --color-accent-subtle:   #E6EDF8;
+  --color-on-accent:       #FFFFFF;
+  --color-focus:           #1D4C9C;
+
+  /* ---------- Typography ---------- */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+
+  --text-hero:       clamp(2.25rem, 1.6rem + 3vw, 3.5rem);     /* 36 → 56 px */
+  --text-page-title: clamp(2rem, 1.5rem + 2vw, 3rem);          /* 32 → 48 px */
+  --text-section:    clamp(1.625rem, 1.35rem + 1vw, 2.125rem); /* 26 → 34 px */
+  --text-h3:         1.25rem;                                   /* 20 px */
+  --text-lead:       clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);  /* 17 → 20 px */
+  --text-body:       1rem;                                      /* 16 px; 17 px at >=768 (media query at the end of this file) */
+  --text-small:      0.875rem;                                  /* 14 px */
+  --text-caption:    0.8125rem;                                 /* 13 px */
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+
+  --leading-tight:   1.1;    /* hero */
+  --leading-heading: 1.2;
+  --leading-snug:    1.4;    /* small text, UI labels */
+  --leading-body:    1.6;
+
+  --tracking-display: -0.025em;  /* hero, page title */
+  --tracking-heading: -0.015em;  /* section title, h3 */
+
+  /* ---------- Spacing (4 px base) ---------- */
+  --space-1: 0.25rem;  /*   4 */
+  --space-2: 0.5rem;   /*   8 */
+  --space-3: 0.75rem;  /*  12 */
+  --space-4: 1rem;     /*  16 */
+  --space-5: 1.5rem;   /*  24 */
+  --space-6: 2rem;     /*  32 */
+  --space-7: 3rem;     /*  48 */
+  --space-8: 4rem;     /*  64 */
+  --space-9: 6rem;     /*  96 */
+  --space-10: 8rem;    /* 128 */
+
+  --section-gap: clamp(4rem, 3rem + 5vw, 7rem);  /* vertical space between page sections */
+  --gutter:      clamp(1rem, 4vw, 2rem);         /* page side padding */
+
+  /* ---------- Layout ---------- */
+  --container:        72rem;   /* 1152 px: page content max */
+  --container-narrow: 46rem;   /*  736 px: prose pages */
+  --measure:          66ch;    /* max line length for paragraphs */
+  --header-height:    3.75rem; /* 60 px */
+  --target-min:       2.75rem; /* 44 px minimum interactive target */
+
+  /* ---------- Borders & radius ---------- */
+  --border-width: 1px;
+  --border:        1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-border-strong);
+  --radius-sm:   6px;   /* chips, code, small labels */
+  --radius-md:   10px;  /* buttons, inputs, summary rows */
+  --radius-lg:   16px;  /* the few container objects (project cards, callouts) */
+  --radius-full: 999px; /* status tags only */
+
+  /* ---------- Shadows (exceptions, not defaults) ---------- */
+  --shadow-sm: 0 1px 2px rgb(21 23 27 / 0.06);
+  --shadow-md: 0 6px 24px rgb(21 23 27 / 0.08), 0 1px 2px rgb(21 23 27 / 0.06);
+
+  /* ---------- Glass (header and mobile menu only) ---------- */
+  --glass-bg:     rgb(247 246 243 / 0.82);
+  --glass-filter: saturate(1.1) blur(14px);
+
+  /* ---------- Motion ---------- */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---------- Layers ---------- */
+  --z-header: 100;
+  --z-menu:   110;
+  --z-skip:   200;
+
+  /* ---------- Portfolio additions (not in PhishGuard Web) ---------- */
+  --reveal-distance: 0.5rem;  /* scroll-reveal travel: small on purpose */
+  --z-card-link:     1;       /* external links sit above a card's stretched title link */
+}
+
+@media (min-width: 48em) { :root { --text-body: 1.0625rem; } }

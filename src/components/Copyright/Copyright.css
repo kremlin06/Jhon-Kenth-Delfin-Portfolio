@@ -1,0 +1,44 @@
+/* The year is plain text to everyone; it has no hover, focus or pointer styling on purpose. */
+.copyright__year {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* rapid taps are not read as a double-tap zoom */
+}
+
+.copyright__note {
+  margin-block-start: 0;
+}
+
+.copyright__note--shown {
+  margin-block-start: var(--space-3);
+  color: var(--color-text-secondary);
+  animation: copyright-note var(--note-duration) var(--ease-standard) forwards;
+}
+
+/* Fades in, holds, fades out. The 9 s default matches quietNote.visibleMs; the real value is set inline. */
+@keyframes copyright-note {
+  0% {
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  88% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* No animation for visitors who prefer reduced motion: the note simply appears, then goes. */
+@media (prefers-reduced-motion: reduce) {
+  .copyright__note--shown {
+    animation: none;
+    opacity: 1;
+  }
+}

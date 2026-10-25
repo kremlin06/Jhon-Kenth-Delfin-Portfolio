@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mirrors --color-bg in src/styles/tokens.css (CSS variables are not available here). -->
+    <meta name="theme-color" content="#F7F6F3" />
+    <title>Jhon Kenth Delfin — Computer Science Student &amp; Aspiring Software Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Jhon Kenth Delfin, a 4th-year BS Computer Science student building web applications, mobile apps and security-focused systems."
+    />
+    <meta name="author" content="Jhon Kenth Delfin" />
+
+    <!--
+      __SITE_URL__ is replaced at build time (see SITE_URL in vite.config.js), and each route gets its own value.
+      Per-page titles and descriptions are set at runtime by src/hooks/useRouteFocus.js.
+    -->
+    <link rel="canonical" href="__SITE_URL__" />
+    <meta property="og:url" content="__SITE_URL__" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jhon Kenth Delfin" />
+    <meta property="og:title" content="Jhon Kenth Delfin — Computer Science Student &amp; Aspiring Software Developer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Jhon Kenth Delfin, a 4th-year BS Computer Science student building web applications, mobile apps and security-focused systems."
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="font-family: system-ui, sans-serif; padding: 1rem; max-width: 40rem;">
+        Jhon Kenth Delfin: Computer Science student and aspiring software developer. This portfolio needs JavaScript to
+        display its pages.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

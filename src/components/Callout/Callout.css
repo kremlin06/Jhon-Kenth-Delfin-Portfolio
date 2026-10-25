@@ -1,0 +1,9 @@
+.callout {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+}
+
+.callout__lead {
+  font-weight: var(--weight-semibold);
+}

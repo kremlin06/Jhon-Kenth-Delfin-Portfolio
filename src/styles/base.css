@@ -1,0 +1,165 @@
+/*
+  Global foundation: font, reset, document and typography defaults, links, buttons,
+  focus, reduced motion, reduced transparency, forced colors.
+  Tokens only (see tokens.css). Page- and component-specific styling does not belong here.
+  Structure and rules follow PhishGuard Web's base.css.
+*/
+
+/*
+  Inter, self-hosted: the untouched variable font from the official Inter 4.1 release
+  (copied from the PhishGuard Web project). License: public/fonts/LICENSE.txt (SIL OFL 1.1).
+  The 400 600 range limits use to the three weights this site uses (400, 500, 600).
+*/
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Reset ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd, ul, ol {
+  margin: 0;
+}
+
+/* ---------- Document ---------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/*
+  Smooth scrolling is opt-in by preference: it only applies when the visitor has NOT asked for reduced motion.
+  It affects same-page section jumps ("On this page" links, the skip link). Route changes and deep links
+  jump instantly on purpose (see src/hooks/useRouteFocus.js). Targets stop below the sticky header because
+  every [id] has a scroll-margin in layout.css.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  overflow-wrap: break-word; /* long URLs must not force horizontal scroll at 320 px */
+}
+
+/* ---------- Typography ---------- */
+
+h1, h2, h3 {
+  font-weight: var(--weight-semibold);
+  text-wrap: balance; /* evens out multi-line headings; ignored where unsupported */
+}
+
+h1 {
+  font-size: var(--text-page-title);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+}
+
+h2 {
+  font-size: var(--text-section);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+h3 {
+  font-size: var(--text-h3);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-heading);
+}
+
+p {
+  max-width: var(--measure);
+  text-wrap: pretty; /* avoids one-word last lines; ignored where unsupported */
+}
+
+code {
+  padding-inline: var(--space-1);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width);
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+  text-decoration-thickness: 2px;
+}
+
+a:active {
+  color: var(--color-accent-active);
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---------- Focus ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Reduced transparency ---------- */
+
+/* Anything built on the glass tokens (header, mobile menu panel) becomes opaque. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-bg: var(--color-bg);
+    --glass-filter: none;
+  }
+}
+
+/* ---------- Forced colors ---------- */
+
+/* Focus rings and every border that uses these tokens switch to system colors. */
+@media (forced-colors: active) {
+  :root {
+    --color-focus: Highlight;
+    --color-border: CanvasText;
+    --color-border-strong: CanvasText;
+  }
+}

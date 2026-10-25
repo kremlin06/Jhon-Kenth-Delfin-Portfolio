@@ -1,0 +1,56 @@
+.steps {
+  --marker: 1.75rem; /* 28 px circle, same as PhishGuard Web's pipeline list */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps__item {
+  position: relative;
+  padding-inline-start: calc(var(--marker) + var(--space-4));
+  padding-block-end: var(--space-5);
+  counter-increment: step;
+}
+
+.steps__item:last-child {
+  padding-block-end: 0;
+}
+
+/* The numbered circle. */
+.steps__item::before {
+  content: counter(step);
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  display: grid;
+  place-items: center;
+  width: var(--marker);
+  height: var(--marker);
+  border: var(--border-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-bg);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The line that joins one circle to the next. */
+.steps__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  inset-block: var(--marker) 0;
+  inset-inline-start: calc(var(--marker) / 2);
+  width: var(--border-width);
+  background: var(--color-border);
+}
+
+.steps__title {
+  /* Line height equals the circle height, so the title text centers on the circle. */
+  font-size: var(--text-body);
+  line-height: var(--marker);
+}
+
+.steps__text {
+  color: var(--color-text-secondary);
+}

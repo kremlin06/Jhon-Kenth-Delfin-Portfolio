@@ -1,0 +1,53 @@
+.timeline {
+  --dot: 0.5rem; /* 8 px */
+  padding: 0;
+  list-style: none;
+}
+
+.timeline__item {
+  position: relative;
+  padding-inline-start: var(--space-5);
+  padding-block-end: var(--space-6);
+}
+
+.timeline__item:last-child {
+  padding-block-end: 0;
+}
+
+/* The rail: runs through every entry, stopping at the last dot. */
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  inset-block: calc(var(--dot) + var(--space-2)) 0;
+  inset-inline-start: calc(var(--dot) / 2 - var(--border-width) / 2);
+  width: var(--border-width);
+  background: var(--color-border);
+}
+
+.timeline__item:last-child::before {
+  display: none;
+}
+
+/* The dot, aligned with the first line of the title. */
+.timeline__item::after {
+  content: "";
+  position: absolute;
+  inset-block-start: calc((var(--text-h3) * var(--leading-snug) - var(--dot)) / 2);
+  inset-inline-start: 0;
+  width: var(--dot);
+  height: var(--dot);
+  box-sizing: border-box;
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  background: var(--color-bg);
+}
+
+.timeline__item > * + * {
+  margin-block-start: var(--space-2);
+}
+
+.timeline__meta {
+  color: var(--color-text-secondary);
+  font-size: var(--text-small);
+  line-height: var(--leading-snug);
+}
