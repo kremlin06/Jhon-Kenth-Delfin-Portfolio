@@ -3,7 +3,7 @@
 Personal portfolio of Jhon Kenth Delfin, a 4th-year BS Computer Science student.
 Built with React, Vite, plain CSS and React Router. No UI framework, animation library or icon library.
 
-Live site (once deployed): https://kremlin06.github.io/Jhon-Kenth-Delfin-Portfolio/
+Live site: https://kremlin06.github.io/Jhon-Kenth-Delfin-Portfolio/
 
 ## Run it
 
